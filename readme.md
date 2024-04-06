@@ -106,3 +106,26 @@ For this project, you'll be using GitHub Codespaces to deploy UpCommerce's servi
 
 ![alt text](images/kubepersistent.png)
 
+(d). Kube Pod Crash Looping Alert
+
+ - This alert should be triggered if any Kubernetes pod is restarting more than once every 5 minutes.
+
+ - The alert rule should include:
+
+  - Alert Name: KubePodCrashLooping
+
+  - Expression: rate(kube_pod_container_status_restarts_total{job="kubernetes-service-endpoints",namespace=~".*"}[5m]) * 𝟼𝟶 * 𝟻 > 𝟶
+
+  - Trigger Duration: 2 minutes
+
+    - Labels:
+
+      - severity: warning
+
+  - Annotations:
+
+     - description: Pod {{ $labels.namespace }}/{{ $labels.pod }} ({{ $labels.container }}) is restarting {{ printf "%.2f" $value }} times / 5 minutes.
+
+     - summary: Pod is crash looping.
+
+![alt text](images/kubeCrashingLoop.png)
