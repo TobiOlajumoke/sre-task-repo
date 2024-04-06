@@ -55,3 +55,30 @@ For this project, you'll be using GitHub Codespaces to deploy UpCommerce's servi
 
 ![alt text](images/nodedown.png)      
 
+(b). Low Memory Alert
+
+  - This alert should be triggered when a Kubernetes node's available memory falls below 85%.
+
+    - The alert rule should include:
+
+      - Alert Name: LowMemory
+
+      - Expression: (node_memory_MemAvailable_bytes / node_memory_MemTotal_bytes) * 100 < 85
+
+      - Trigger Duration: 2 minutes
+
+      - Labels:
+
+        - severity: warning
+
+  - Annotations:
+
+    - host: "{{ $labels.kubernetes_node }}"
+
+    - summary: "{{ $labels.kubernetes_node }} Host is low on memory. Only {{ $value }}% left"
+
+    - description: "{{ $labels.kubernetes_node }} node is low on memory. Only {{ $value }}% left"
+
+    ![alt text](<images/low memory alert.png>)
+
+    
