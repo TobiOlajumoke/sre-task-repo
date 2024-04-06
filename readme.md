@@ -81,4 +81,28 @@ For this project, you'll be using GitHub Codespaces to deploy UpCommerce's servi
 
     ![alt text](<images/low memory alert.png>)
 
-    
+
+(c). Kube Persistent Volume Errors Alert
+
+ - This alert should be triggered if any persistent volume has a status of "Failed" or "Pending".
+
+ - The alert rule should include:
+
+   - Alert Name: KubePersistentVolumeErrors
+
+   - Expression: kube_persistentvolume_status_phase{job="kubernetes-service-endpoints",phase=~"Failed|Pending"} > 0
+
+   - Trigger Duration: 2 minutes
+
+   - Labels:
+
+      - severity: critical
+
+   - Annotations:
+
+      - description: The persistent volume {{ $labels.persistentvolume }} has status {{ $labels.phase }}.
+
+      - summary: PersistentVolume is having issues with provisioning.
+
+![alt text](images/kubepersistent.png)
+
