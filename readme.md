@@ -156,3 +156,28 @@ For this project, you'll be using GitHub Codespaces to deploy UpCommerce's servi
 ![alt text](images/kubepodnotready.png)
 
 
+6. Once you have declared all the alerts in the prometheus.yml file, run the command below:
+```
+helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
+helm repo update
+helm install prometheus prometheus-community/prometheus \
+  -f prometheus.yml \
+  --namespace sre \
+```
+Here's what the commands above are doing:
+
+- helm repo add prometheus-community https://prometheus-community.github.io/helm-charts: This command adds a Helm repository named prometheus-community and sets its URL to https://prometheus-community.github.io/helm-charts. Helm repositories are used to store and distribute Helm charts, which are packages of pre-configured Kubernetes resources.med 
+
+- helm repo update: This command updates the local cache of Helm charts from all configured Helm repositories. It ensures that you have the latest information about available charts and their versions.
+
+- helm install prometheus prometheus-community/prometheus -f prometheus.yml --namespace sre: This command installs the Prometheus chart from the prometheus-community repository into the Kubernetes cluster. Here's what each part of the command does:
+
+  - helm install prometheus: This specifies the name of the release. In this case, the release will be named prometheus.
+
+  - prometheus-community/prometheus: This specifies the chart to install, which is prometheus from the prometheus-community repository.
+
+  - f prometheus.yml: This flag specifies a YAML file (prometheus.yml) containing custom configuration values for the Prometheus chart. This file will override default configuration values defined in the chart.
+
+  - --namespace sre: This flag specifies the namespace (sre) in which to install the Prometheus resources.
+
+  
