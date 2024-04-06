@@ -129,3 +129,30 @@ For this project, you'll be using GitHub Codespaces to deploy UpCommerce's servi
      - summary: Pod is crash looping.
 
 ![alt text](images/kubeCrashingLoop.png)
+
+
+(e). Kube Pod Not Ready Alert
+
+- This alert should be triggered if any Kubernetes pod remains in a non-ready state for longer than 2 minutes.
+
+- The alert rule should include:
+
+  - Alert Name: KubePodNotReady
+
+  - Expression: sum by(namespace, pod) (max by(namespace, pod) (kube_pod_status_phase{job="kubernetes-service-endpoints",namespace=~".*",phase=~"Pending|Unknown"}) * on(namespace, pod)    group_left(owner_kind) topk by(namespace, pod) (1, max by(namespace, pod, owner_kind) (kube_pod_owner{owner_kind!="Job"}))) > 0
+
+  - Trigger Duration: 2 minutes
+
+  - Labels:
+
+   - severity: warning
+
+  - Annotations:
+
+   - description: Pod {{ $labels.namespace }}/{{ $labels.pod }} has been in a non-ready state for longer than 5 minutes.
+
+   - summary: Pod has been in a non-ready state for more than 2 minutes."
+
+![alt text](images/kubepodnotready.png)
+
+
