@@ -212,6 +212,7 @@ Here's what the above code does:
 kubectl apply -f deployment.yml -n sre
 kubectl apply -f service.yml -n sre
 ```
+images/kubectlapply.png
 The code above performs the following functions:
 
 - kubectl apply -f deployment.yml -n sre:
