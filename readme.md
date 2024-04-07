@@ -235,6 +235,8 @@ The code above performs the following functions:
 ```
 minikube service upcommerce-service -n sre
 ```
+images/upcommerece.png
+
 This command creates a Minikube service and forwards it to a port where you can access it. You can try transacting on UpCommerce's site which is forwarded to this port using admin as both the username and password. 
 
 10. Create another split terminal and run the following command:
@@ -243,6 +245,7 @@ export POD_NAME=$(kubectl get pods --namespace sre -l "app.kubernetes.io/name=al
 
 kubectl --namespace sre port-forward $POD_NAME 9093
 ```
+![alt text](<images/export 1.png>)
 The above command allows you to forward your Prometheus AlertManager to a port within your codespace (usually port 9093)
 
 11. Create another split terminal and enter the command:
@@ -251,6 +254,7 @@ export POD_NAME=$(kubectl get pods --namespace sre -l "app.kubernetes.io/name=pr
 
 kubectl --namespace sre port-forward $POD_NAME 9090
 ```
+![alt text](images/export9090.png)
 The above command allows you to forward your Prometheus server to a port within your codespace (usually port 9090).
 
 ### To ensure your Kubernetes deployment is correct and working as expected, run the command:
@@ -263,3 +267,4 @@ kubectl port-forward service/upcommerce-service -n sre 30768:5000
 ```
 
 Port 5000 is the port in your service.yml file. Click on the Ports Tab on the Terminal Console. Next, Ctrl + click on the URL for the service port (30768)
+![alt text](images/port.png)
