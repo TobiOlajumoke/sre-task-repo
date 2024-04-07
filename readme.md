@@ -268,3 +268,68 @@ kubectl port-forward service/upcommerce-service -n sre 30768:5000
 
 Port 5000 is the port in your service.yml file. Click on the Ports Tab on the Terminal Console. Next, Ctrl + click on the URL for the service port (30768)
 ![alt text](images/port.png)
+
+
+
+
+
+## (Optional) Additional Tasks 
+
+1. Create an email alert
+
+Your task is to write the following Prometheus alert manager configuration in a YAML file named email-alert.yml
+
+### Instructions:
+
+1. Set the resolve_timeout to 1 minute.
+
+2. Configure a receiver named 'gmail-notifications' to send email notifications to example@gmail.com.
+
+- Update from, auth_username, auth_identity with your Gmail email address.
+
+- Update auth_password with your Gmail app password.
+
+- Ensure send_resolved is set to true.
+
+- Customize the email headers and text to include alert details.
+
+3. Configure the routing rules:
+
+- group_wait: 10 seconds
+
+- group_interval: 2 minutes
+
+- receiver: 'gmail-notifications'
+
+- repeat_interval: 2 minutes
+
+Feel free to use Gmail or your favourite email account to test out the alert. 
+
+2. Create a Slack alert
+
+Your task here is to write a Prometheus alert manager configuration for Slack in a YAML file named slack-alert.yml based on the provided specifications:
+
+### Instructions:
+
+1. Set the resolve_timeout to 1 minute.
+
+2. Configure the slack_api_url with the appropriate Slack webhook URL.
+
+3. Define a receiver named 'slack-notifications' to send notifications to the #upcommerce-devs Slack channel (you'll need to create this in your Slack just for this project)
+
+4. Ensure send_resolved is set to true to send resolved alerts.
+
+5. Configure the routing rules:
+
+- group_interval: 5 minutes
+
+- group_wait: 10 seconds
+
+- receiver: 'slack-notifications'
+
+- repeat_interval: 1 hour
+
+To successfully execute this task, you'll need a Slack API URL. Here's a guide that shows how to generate a Slack Webhook URL.
+
+
+### For all of the above optional tasks, please use a secrets manager like GitHub Secrets, Kubernetes Secrets or any other secrets management system you prefer to prevent your Slack or email secrets from being pushed to your GitHub repo.
