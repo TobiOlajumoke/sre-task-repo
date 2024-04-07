@@ -180,4 +180,53 @@ Here's what the commands above are doing:
 
   - --namespace sre: This flag specifies the namespace (sre) in which to install the Prometheus resources.
 
-  
+7. Run the code below:
+```
+helm repo add grafana https://grafana.github.io/helm-charts
+helm repo update
+helm install grafana grafana/grafana \
+ --namespace sre \
+ --set adminPassword="admin"
+```
+Here's what the above code does:
+
+- helm repo add grafana https://grafana.github.io/helm-charts: This command adds a Helm repository named grafana and sets its URL to https://grafana.github.io/helm-charts. Helm repositories are used to store and distribute Helm charts, which are packages of pre-configured Kubernetes resources for Grafana in this case.
+
+- helm repo update: This command updates the local cache of Helm charts from all configured Helm repositories. It ensures that you have the latest information about available charts and their versions.
+
+- helm install grafana grafana/grafana: This command installs the Grafana chart from the grafana repository into the Kubernetes cluster. Here's what each part of the command does:
+
+  - helm install grafana: This specifies the name of the release. In this case, the release will be named grafana.
+
+  - grafana/grafana: This specifies the chart to install, which is grafana from the grafana repository.
+
+  - --namespace sre: This flag specifies the namespace (sre) in which to install the Grafana resources. Namespaces provide a way to scope and isolate resources within a Kubernetes cluster.
+
+  - --set adminPassword="admin": This flag sets a custom configuration value for the Grafana chart. In this case, it sets the administrator password to "admin". This password can be used to log in to the Grafana web interface.
+
+
+
+8.  Run the code below to create a deployment and service 
+```
+kubectl apply -f deployment.yml -n sre
+kubectl apply -f service.yml -n sre
+```
+The code above performs the following functions:
+
+- kubectl apply -f deployment.yml -n sre:
+
+  - kubectl apply: This command is used to apply a configuration to a Kubernetes cluster. It creates or updates resources based on the configuration provided.
+
+  - -f deployment.yml: This flag specifies the file containing the configuration to apply. In this case, it's deployment.yml, which contains the definition for a Kubernetes Deployment resource.
+
+  - -n sre: This flag specifies the namespace (sre) in which to apply the configuration. The configuration specified in deployment.yml will be applied to the sre namespace.
+
+- kubectl apply -f service.yml -n sre:
+
+  - kubectl apply: Similar to the previous command, this command applies a configuration to a Kubernetes cluster.
+
+  - -f service.yml: This flag specifies the file containing the configuration to apply. In this case, it's service.yml, which contains the definition for a Kubernetes Service resource.
+
+  - -n sre: This flag specifies the namespace (sre) in which to apply the configuration. Again, the configuration specified in service.yml will be applied to the sre namespace.
+
+
