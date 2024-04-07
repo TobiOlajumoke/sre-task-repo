@@ -270,8 +270,15 @@ Port 5000 is the port in your service.yml file. Click on the Ports Tab on the Te
 ![alt text](images/port.png)
 
 
+When the homepage of UpCommerce's website is displayed, login with the following credentials:
 
+username: admin
 
+password: admin
+
+![alt text](images/login.png)
+
+![alt text](images/website.png)
 
 ## (Optional) Additional Tasks 
 
@@ -333,3 +340,4 @@ To successfully execute this task, you'll need a Slack API URL. Here's a guide t
 
 
 ### For all of the above optional tasks, please use a secrets manager like GitHub Secrets, Kubernetes Secrets or any other secrets management system you prefer to prevent your Slack or email secrets from being pushed to your GitHub repo.
+
